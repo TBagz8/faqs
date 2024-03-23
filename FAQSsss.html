@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manage FAQ</title>
+    <link href="C:\Users\RJ\Documents\CKC\Styles\styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .table-portals {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(196, 195, 195);
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .table-portals th:nth-child(1),
+        .table-portals td:nth-child(1) {
+            width: 10%;
+        }
+
+        .table-portals th:nth-child(2),
+        .table-portals td:nth-child(2) {
+            width: 70%;
+        }
+
+        .table-portals th:nth-child(3),
+        .table-portals td:nth-child(3) {
+            width: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shadow-sm p-3 mb-1" style="background-color: #007bff;">
+
+        <!-- Breadcrumbs -->
+        <nav>
+            <ul class="breadcrumbs">
+                <li>
+                    <a class="breadcrumbs__a" href="https://faq.smsaccess.net/portals" style="font-size: 100%;">Manage
+                        FAQs</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Header -->
+        <div>
+            <h1 class="fw-bolder" style="font-family: monospace; color: rgb(255, 255, 255);">Manage
+                FAQs</h1>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center;width: 100%;">
+        <div style="width: 80%;">
+            <div class="shadow p-1 mb-1 bg-white rounded">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-sm-1" style="height: 40px; margin-top: 10px; margin-right: 10px;">
+                            <img src="C:\Users\RJ\Documents\CKC\Photo\faq.png" style="height: 50px;">
+                        </div>
+                        <div class="col-sm-7" style="text-align: left;">
+                            <strong style="font-size: larger; ">Create new FAQs</strong>
+                            <p style="font-size: small; ">Click the <strong>"Create new FAQ"</strong> button to add a
+                                new FAQ</p>
+                        </div>
+                        <div class="col-sm 4" style="height: 40px; margin-top: 15px; margin-right: 10px;">
+                            <button class="btn btn-primary float-end " onclick="createNewFaq()">Create new
+                                FAQ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Input -->
+            <div class="filter__container shadow p-1 mb-3 bg-white rounded" style="width: 100%;">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="filter__input">
+                            <label for="filterPortalInput" style="font-size: small;"><strong>Filter by
+                                    portal:</strong></label>
+                            <input type="text" id="filterPortalInput" class="form-control"
+                                placeholder="Enter Portal Title" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="filter__input">
+                            <label for="filterQuestionInput" style="font-size: small;"><strong>Filter by
+                                    question:</strong></label>
+                            <input type="text" id="filterQuestionInput" class="form-control"
+                                placeholder="Enter Question Title" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+    <div class="filter__container shadow p-1 mb-3 bg-white rounded" style="width: 100%;">
+        <div class="row">
+            <div>
+                <table class="table-portals">
+                    <tr>
+                        <th>Portal Title</th>
+                        <th>Questions</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>Sample Portal 1</td>
+                        <td>Sample Question 1</td>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button class="btn btn-primary mr-2" onclick="openEditModal(this)">Edit</button>
+                                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sample Portal 2</td>
+                        <td>Sample Question 2</td>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button class="btn btn-primary mr-2" onclick="openEditModal(this)">Edit</button>
+                                <button class="btn btn-danger"onclick="confirmDelete()">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- More rows can be added dynamically -->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content" style="height: 55%; width: 30%;">
+            <span class="close" onclick="closeModal()"
+                style="position: absolute; top: 10px; right: 10px; font-size: 24px; cursor: pointer;">&times;</span>
+            <form id="createPortalForm">
+
+                <!-- Input fields -->
+                <div class="form-group" style="padding: 20px;">
+                    <label for="portalTitle"><strong>Portal Title:</strong> </label>
+                    <input type="text" class="form-control" id="portalTitle" placeholder="Enter Portal Title">
+                    <label for="question"><strong>Question:</strong> </label>
+                    <input type="text" class="form-control" id="question" placeholder="Enter Question">
+
+                    <!-- Input for picture -->
+                    <div class="mb-3">
+                        <label for="portalPicture" class="form-label"><strong>Portal Picture:</strong></label>
+                        <input class="form-control" type="file" id="portalPicture">
+                        <div id="pictureHelp" class="form-text">Upload a picture for the portal if needed.</div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            onclick="closeModal()">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveEditBtn" onclick="saveNewPortal()">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('filterPortalInput').addEventListener('input', filterRows);
+        document.getElementById('filterQuestionInput').addEventListener('input', filterRows);
+
+        function filterRows() {
+            var filterPortalValue = document.getElementById('filterPortalInput').value.toLowerCase();
+            var filterQuestionValue = document.getElementById('filterQuestionInput').value.toLowerCase();
+            var rows = document.querySelector('.table-portals').getElementsByTagName('tr');
+
+            for (var i = 1; i < rows.length; i++) {
+                var title = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+                var question = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+                var display = (title.includes(filterPortalValue) && question.includes(filterQuestionValue)) ? '' : 'none';
+                rows[i].style.display = display;
+            }
+        }
+
+        function confirmDelete() {
+            if (confirm('Are you sure you want to delete this item?')) {
+                // Handle delete logic here
+            }
+        }
+
+        function createNewFaq() {
+            document.getElementById("portalTitle").value = ""; 
+            document.getElementById("question").value = "";
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function saveNewPortal() {
+            var portalTitle = document.getElementById("portalTitle").value.trim();
+            var question = document.getElementById("question").value.trim();
+            if (portalTitle && question) {
+                var table = document.querySelector('.table-portals');
+                var row = table.insertRow(table.rows.length);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                cell1.textContent = portalTitle;
+                cell2.textContent = question;
+                cell3.innerHTML = '<div class="d-flex justify-content-center align-items-center"><button class="btn btn-primary mr-2" onclick="openEditModal(this)">Edit</button><button class="btn btn-danger" onclick="confirmDelete()">Delete</button></div>';
+                closeModal();
+            } else {
+                alert("Please enter both portal title and question.");
+            }
+        }
+
+        var modal = document.getElementById('myModal');
+
+        function openEditModal(button) {
+            var row = button.closest('tr');
+            var portalTitle = row.cells[0].textContent;
+            var question = row.cells[1].textContent;
+            document.getElementById("portalTitle").value = portalTitle;
+            document.getElementById("question").value = question;
+            modal.style.display = "block";
+
+            document.getElementById("saveEditBtn").onclick = function () {
+                var editedTitle = document.getElementById("portalTitle").value.trim();
+                var editedQuestion = document.getElementById("question").value.trim();
+                if (editedTitle && editedQuestion) {
+                    row.cells[0].textContent = editedTitle;
+                    row.cells[1].textContent = editedQuestion;
+                    closeModal();
+                } else {
+                    alert("Please enter both portal title and question.");
+                }
+            };
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+    </script>
+
+</body>
+
+</html>

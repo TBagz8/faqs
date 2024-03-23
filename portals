@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portal</title>
+    <link rel="stylesheet" href="https://faq.smsaccess.net/css/styles.css">
+    <link rel="stylesheet" href="C:\Users\RJ\Documents\CKC\Styles\font-awesome.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+
+
+    <nav>
+        <ul class="breadcrumbs">
+            <li>
+                <a class="breadcrumbs__a" href="https://faq.smsaccess.net/portals">Manage Portals</a>
+            </li>
+        </ul>
+    </nav>
+    <h1>Manage Portals</h1>
+    <div class="filter__input">
+        <label for="filterPortalInput">Filter by portal:</label>
+        <input type="text" id="filterPortalInput" placeholder="Enter Portal Title">
+    </div>
+    <hr>
+    <a class="btn" href="https://faq.smsaccess.net/portals/create">Create new portal</a>
+    <hr>
+    <table class="shadow p-3 mb-5 bg-body-tertiary rounded">
+        <tr>
+            <th>Portal</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>
+                Schools
+            </td>
+            <td>
+                <div class="form">
+                    <a class="btn btn--blue" href="https://faq.smsaccess.net/portals/1/edit">Edit</a>
+                    <form class="" action="https://faq.smsaccess.net/portals/1" method="POST">
+                        <input type="hidden" name="_token" value="9lJ54fzYXUy3LIYFQEhMo1Av973GneTkZdtoxKSK"
+                            autocomplete="off"> <input type="hidden" name="_method" value="DELETE"> <button
+                            onclick="confirmDelete()" class="btn btn--red" type="submit">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Down Town SM
+            </td>
+            <td>
+                <div class="form">
+                    <a class="btn btn--blue" href="https://faq.smsaccess.net/portals/2/edit">Edit</a>
+                    <form class="" action="https://faq.smsaccess.net/portals/2" method="POST">
+                        <input type="hidden" name="_token" value="9lJ54fzYXUy3LIYFQEhMo1Av973GneTkZdtoxKSK"
+                            autocomplete="off"> <input type="hidden" name="_method" value="DELETE"> <button
+                            onclick="confirmDelete()" class="btn btn--red" type="submit">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ororama
+            </td>
+            <td>
+                <div class="form">
+                    <a class="btn btn--blue" href="https://faq.smsaccess.net/portals/3/edit">Edit</a>
+                    <form class="" action="https://faq.smsaccess.net/portals/3" method="POST">
+                        <input type="hidden" name="_token" value="9lJ54fzYXUy3LIYFQEhMo1Av973GneTkZdtoxKSK"
+                            autocomplete="off"> <input type="hidden" name="_method" value="DELETE"> <button
+                            onclick="confirmDelete()" class="btn btn--red" type="submit">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Finance
+            </td>
+            <td>
+                <div class="form">
+                    <a class="btn btn--blue" href="https://faq.smsaccess.net/portals/9/edit">Edit</a>
+                    <form class="" action="https://faq.smsaccess.net/portals/9" method="POST">
+                        <input type="hidden" name="_token" value="9lJ54fzYXUy3LIYFQEhMo1Av973GneTkZdtoxKSK"
+                            autocomplete="off"> <input type="hidden" name="_method" value="DELETE"> <button
+                            onclick="confirmDelete()" class="btn btn--red" type="submit">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        document.getElementById('filterPortalInput').addEventListener('input', function () {
+            var filterValue = this.value.toLowerCase();
+            var rows = document.querySelector('table').getElementsByTagName('tr');
+
+            for (var i = 1; i < rows.length; i++) {
+                var title = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+                if (title.includes(filterValue)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+    <script>
+        function confirmDelete() {
+            if (confirm('Are you sure you want to delete this item?')) {
+                document.getElementById('deleteForm').submit();
+            }
+        }
+    </script>
+    <script>
+        setTimeout(function () {
+            document.getElementById('message').style.display = 'none';
+        }, 5000);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

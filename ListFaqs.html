@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FAQs</title>
+    <link href="C:\Users\RJ\Documents\CKC\Styles\styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .table-portals {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(196, 195, 195);
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .table-portals th:nth-child(1),
+        .table-portals td:nth-child(1) {
+            width: 10%;
+        }
+
+        .table-portals th:nth-child(2),
+        .table-portals td:nth-child(2) {
+            width: 50%;
+        }
+
+        .table-portals th:nth-child(3),
+        .table-portals td:nth-child(3) {
+            width: 20%;
+        }
+
+        .table-portals th:nth-child(4),
+        .table-portals td:nth-child(4) {
+            width: 20%;
+        }
+
+        .dropdown-menu {
+            min-width: 100%;
+        }
+
+        .chatbox-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            max-height: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow-y: auto;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            /* Ensure it's on top of other elements */
+        }
+
+        /* Chatbox input group styles */
+        .chatbox-input-group {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        .chatbox-input {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .chatbox-send-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .chatbox-container.minimized {
+        width: 80px; /* Adjust as needed */
+        }
+
+        .chatbox-container.minimized .chatbox-messages,
+        .chatbox-container.minimized .chatbox-input-group {
+            display: none;
+        }
+
+        .chatbox-container.minimized .chatbox-header {
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shadow-sm p-3 mb-1" style="background-color: #007bff;">
+
+        <!-- Breadcrumbs -->
+        <nav>
+            <ul class="breadcrumbs">
+                <li>
+                    <a class="breadcrumbs__a" href="https://faq.smsaccess.net/portals" style="font-size: 100%;">
+                        FAQs</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Header -->
+        <div>
+            <h1 class="fw-bolder" style="font-family: monospace; color: rgb(255, 255, 255);">
+                FAQs</h1>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center;width: 100%;">
+        <div style="width: 80%;">
+            <!-- Filter Input -->
+            <div class="filter__container shadow p-1 mb-3 bg-white rounded" style="width: 100%;">
+                <div class="row">
+                    <div class="filter__input">
+                        <label for="filterPortalInput" style="font-size: small;"><strong>Filter by
+                                portal:</strong></label>
+                        <input type="text" id="filterPortalInput" class="form-control" placeholder="Enter Portal Title"
+                            style="width: 70%;">
+                    </div>
+                </div>
+            </div>
+            <!-- Dropdown -->
+            <div class="filter__container shadow p-1 mb-3 bg-white rounded" style="width: 100%;">
+                <div class="row">
+                    <h2 class="accordion-header " id="flush-headingOne">
+                        <button class="accordion-button rounded collapsed px-3 py-2" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                            aria-controls="flush-collapseOne">
+                            <h2 class="display-6 fs-5">How to access cashier's portal?</h2>
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <div class="container-fluid px-0">
+                                <div class="row mb-2">
+                                    <div class="col-1 fw-bold w-auto" id="stepsTitle">Step 1:</div>
+                                    <div class="col-md-10 col-lg-8 col-8" id="content">Open your browser -
+                                        preferable
+                                        browser
+                                        to use is
+                                        Google Chrome.</div>
+                                    <div class="col-md-12 col-lg-3 text-center"><a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#imageModal">
+                                            <img src="/images/open_browser.PNG"
+                                                style="max-width: 340px; max-height: 165px;  height: 100%; width: 100%;"
+                                                class="img-thumbnail img-fluid" alt="...">
+                                        </a></div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="imageModal" tabindex="-1"
+                                        aria-labelledby="imageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <img src="/images/open_browser.PNG" class="img-fluid" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-1 fw-bold w-auto" id="stepsTitle">Step 2:</div>
+                                    <div class="col-md-10 col-lg-8 col-8" id="content">Type this link to the
+                                        browsers URL  - <a href="cashier.ck/"
+                                            class="fw-bold text-info">cashier.ck/login</a></div>
+                                    <div class="col-md-12 col-lg-3 text-center"><a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#cashierlink">
+                                            <img src="/images/cashier.ck_link.PNG"
+                                                style="max-width: 340px; max-height: 165px;  height: 100%; width: 100%;"
+                                                class="img-thumbnail img-fluid" alt="...">
+                                        </a></div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="cashierlink" tabindex="-1"
+                                        aria-labelledby="imageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-body text-center">
+                                                    <img src="/images/cashier.ck_link.PNG" class="img-fluid" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chatbox container -->
+            <div class="chatbox-container">
+                <div class="chatbox-header">
+                    <span>Chat</span>
+                    <button id="chatbox-toggle-btn" class="btn btn-link chatbox-toggle-btn">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+                <div id="chatbox-messages"></div>
+                <div class="chatbox-input-group">
+                    <input type="text" id="chatbox-input" class="form-control chatbox-input" placeholder="Type your message here...">
+                    <button id="chatbox-send-btn" class="btn btn-primary chatbox-send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+<script>
+    $(document).ready(function () {
+        // Toggle chatbox visibility when clicking the toggle button
+        $("#chatbox-toggle-btn").click(function () {
+            $(".chatbox-container").toggleClass("minimized");
+        });
+
+        $("#chatbox-send-btn").click(function () {
+            sendMessage();
+        });
+
+        // Function to send message
+        function sendMessage() {
+            var message = $("#chatbox-input").val();
+            if (message.trim() !== "") {
+                var formattedMessage = '<div class="chatbox-message">' + message + '</div>';
+                $("#chatbox-messages").append(formattedMessage);
+                $("#chatbox-input").val(""); // Clear input after sending message
+            }
+        }
+
+        // Optional: Send message when Enter key is pressed
+        $("#chatbox-input").keypress(function (e) {
+            if (e.which == 13) {
+                sendMessage();
+            }
+        });
+    });
+</script>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    </div>
+    </div>
+</body>
+
+</html>
